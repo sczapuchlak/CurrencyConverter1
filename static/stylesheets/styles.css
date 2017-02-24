@@ -1,5 +1,6 @@
 body{
-    background: lightseagreen;
+    text-align: center;
+    background: linear-gradient( 90deg, cyan,aqua, midnightblue, black );;
     font-family: sans-serif;
 }
 
