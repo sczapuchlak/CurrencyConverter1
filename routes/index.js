@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET a rate from OER service */
-router.get('/convert', function(req, res){
+router.get('/convert', function(req, res, next){   // include next. It's a function that you can call to transfer control to the next function which will handle this request. In this route, you use it to stop this function and pass control to your error handlers.
    //Get the users amount
     var input = req.query.dollar_amount;
     //use the to and from selections
@@ -24,8 +24,14 @@ router.get('/convert', function(req, res){
         }
         else {
             //gets the currency code from JSON object
-            var rateTo = oer[convertTo];
-            var rateFrom = oer[convertFrom];
+
+            console.log('The data fetched from the api is ', oer)
+
+            // you'll need to do a little more processing. But at this point,
+            // your oer variable has the data you need in it.
+
+            var rateTo = oer['rates'][convertTo];
+            var rateFrom = oer['rates'][convertFrom];
 
            //Converts to USD first
             var toDollars = input / rateFrom;
