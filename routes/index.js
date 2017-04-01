@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 //retrieves the info from the API
-var OERRequest = require('../helpers/oer');
+var OERRequest = require('../helpers/oer.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,7 +25,7 @@ router.get('/convert', function(req, res, next){   // include next. It's a funct
         else {
             //gets the currency code from JSON object
 
-            console.log('The data fetched from the api is ', oer)
+            console.log('The data fetched from the api is ', oer);
 
             // you'll need to do a little more processing. But at this point,
             // your oer variable has the data you need in it.

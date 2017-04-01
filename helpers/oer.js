@@ -1,6 +1,4 @@
 var request = require('request');
-//var moment = require('moment');   // do you need moment? APOD used it to generate a random date. Unrelated to the API call. I'm not sure this app needs it?
-
 var baseURL = 'https://openexchangerates.org/api/latest.json/';
 
 // Makes requests to the OER service using request.
@@ -20,8 +18,7 @@ function OERRequest(callback) {
             //No error, and there is a response from OER. Expect the response to be a string.
             //console.log("NASA SAYS \n" + JSON.stringify(body));
             var oerJSON = JSON.parse(body);   //Convert JSON text to a JavaScript object
-            // You need to write this function. What's the today variable?
-            //var jsonForTemplate = processOERresponse(today, oerJSON);  // Rearrange JSON into a more useful format for display in the template
+            var jsonForTemplate = processOERresponse( oerJSON);  // Rearrange JSON into a more useful format for display in the template
             callback(null, oerJSON);   //First argument is typically the error. So null if there is no error. 
         }
 
@@ -35,6 +32,9 @@ function OERRequest(callback) {
     });
 }
 
+function processOERresponse(oerJason) {
+    //
 
+}
 
 module.exports=OERRequest;
