@@ -15,26 +15,24 @@ function OERRequest(callback) {
     request({uri: baseURL, qs: queryParam}, function (error, oer_response, body) {
 
         if (!error && oer_response.statusCode == 200) {
-            //No error, and there is a response from OER. Expect the response to be a string.
-            //console.log("NASA SAYS \n" + JSON.stringify(body));
-            var oerJSON = JSON.parse(body);   //Convert JSON text to a JavaScript object
-            var jsonForTemplate = processOERresponse( oerJSON);  // Rearrange JSON into a more useful format for display in the template
-            callback(null, oerJSON);   //First argument is typically the error. So null if there is no error. 
+            // Exception handler for parsing object.
+            try {
+                // Parses the returned data.
+                var oerJSON = JSON.parse(body);
+            } catch (error) {
+                return callback(error);   // just for catching JSON parsing errors.
+            }
+            // Only gets to this point if no errors. Returns the parsed JSON object.
+            return callback(null, oerJSON.rates);
         }
-
+        // Errors display.
         else {
-            //Log error info to console and return error with message.
             console.log("Error in JSON request: " + error);
             console.log(oer_response);
             console.log(body);
-            callback(error); // First arg should be the error.
+            return callback(error);
         }
     });
-}
-
-function processOERresponse(oerJason) {
-    //
-
 }
 
 module.exports=OERRequest;
