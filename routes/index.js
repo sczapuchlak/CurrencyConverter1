@@ -30,8 +30,8 @@ router.get('/convert', function(req, res, next){   // include next. It's a funct
             // you'll need to do a little more processing. But at this point,
             // your oer variable has the data you need in it.
 
-            var rateTo = oer['rates'][convertTo];
-            var rateFrom = oer['rates'][convertFrom];
+            var rateTo = oer[convertTo];
+            var rateFrom = oer[convertFrom];
 
            //Converts to USD first
             var toDollars = input / rateFrom;
